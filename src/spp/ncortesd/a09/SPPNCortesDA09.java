@@ -15,28 +15,12 @@ public class SPPNCortesDA09 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner kb= new Scanner (System.in);
-        int suma=0;
-        int [][] matrix1 = new int [solicitaTamaño()][solicitaTamaño()];
-        for (int i=0; i<matrix1.length; i++){
-            for (int j=0; j<matrix1.length; j++){
-                matrix1[i][j]=solicitaEntero();
-            }
-        }
-        int [][] matrix2 = new int [solicitaTamaño()][solicitaTamaño()];
-        for (int i=0; i<matrix2.length; i++){
-            for (int j=0; j<matrix2.length; j++){
-                matrix2[i][j]=solicitaEntero();
-            }
-        }
+        int tamaño=solicitaTamaño();
+        int [][] a = arreglo ("A", tamaño);
+        int [][] b = arreglo ("B", tamaño);
         
-    }
-    public static int solicitaTamaño(){
-        Scanner kb= new Scanner (System.in);
-        int tamaño;
-        System.out.println("Introduce el tamaño de la matriz");
-        tamaño=kb.nextInt();
-        return tamaño;
+        sumaMatriz(a,b);
+        
     }
     public static int solicitaEntero(){
         Scanner kb= new Scanner (System.in);
@@ -55,6 +39,52 @@ public class SPPNCortesDA09 {
                 kb.nextLine();
             }
         }while (flag);
+        
         return n;
     }
+    public static int solicitaTamaño(){
+        Scanner key = new Scanner (System.in);
+        boolean flag;
+        int a = 0;
+        do{
+            try{
+                System.out.println("Escribe el tamaño del arreglo: ");
+                a = key.nextInt();
+                flag = false;
+            }
+            catch (Exception e){
+                System.out.println("Error");
+                key.next();
+                flag = true;
+            }
+        }
+        while (flag);
+        return a;
+    }
+    public static int [][] arreglo (String a, int tamaño){
+        int [][]arreglo = new int [tamaño][tamaño];
+        System.out.println("Arreglo: " + a);
+        for (int i = 0; i < arreglo.length; i++){
+        for (int j = 0; j < arreglo[i].length; j++){
+        arreglo [i][j] = solicitaEntero();
+        }
+        }
+        return arreglo;
+    }
+    //realizar la suma de matrices en un metodo
+    
+    public static int [][] sumaMatriz (int [][]a, int[][]b){
+        int [][] resultado = new int [a.length] [a.length];
+        System.out.println("Suma: ");
+        for (int i = 0; i < a.length; i++){
+        for (int j = 0; j < a[i].length; j++){
+        resultado[i][j] = a[i][j] + b[i][j];
+        System.out.println("["+resultado[i][j]+"]");   
+    }
+        System.out.println("");   
+    }
+        return resultado; 
+    }
+    
+    
 }
